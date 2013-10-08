@@ -237,8 +237,8 @@ This is super simple:
 ##CONCLUSION
 
 Well, that's it in a nutshell. As I said earlier, CI Fire Starter does not attempt to be a full-blown CMS. You'd have
-to build that functionality on your own. If you want a great CMS build on CodeIgniter, check out one of these
-awesome tools:
+to build that functionality on your own. If you want a great CMS built on CodeIgniter, or need a more robust starting point, check out one of these
+awesome apps:
 
 * HeroFramework: http://www.heroframework.com/
 * Halogy: http://www.halogy.com/
@@ -248,3 +248,4 @@ awesome tools:
 * Open-Blog: http://www.open-blog.org/ (this is my other project - currently working on a complete rewrite, but it's
   been slow going)
 * Bonfire: http://cibonfire.com/ (this is more of an application builder than a full CMS)
+* FuelCMS: http://getfuelcms.com/
