@@ -26,7 +26,7 @@ function display_json($array)
 function json_indent($array=array())
 {
     // make sure array is provided
-    if ( ! empty($array))
+    if (empty($array))
         return NULL;
 
     //Encode the string
