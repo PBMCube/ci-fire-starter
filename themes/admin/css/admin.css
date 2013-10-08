@@ -1,0 +1,47 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+    display: block;
+    position: static;
+    margin-bottom: 20px;
+}
+
+.required {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+/** Bootstrap Overrides **/
+
+body.modal-open,
+.modal-open .navbar-fixed-top,
+.modal-open .navbar-fixed-bottom {
+    margin-right: 0 !important;
+}
+
+.pagination {
+    margin: 0 !important;
+}
+
+span.active {
+    color: #009900;
+}
+
+span.inactive {
+    color: #ff0000;
+}
+
+/** Glyphicon Coloring **/
+
+.icon {
+    margin: 0 5px;
+}
+.icon-blue   { color: #428bca; }
+.icon-green  { color: #47a447; }
+.icon-cyan   { color: #39b3d7; }
+.icon-orange { color: #ed9c28; }
+.icon-red    { color: #d2322d; }
+
