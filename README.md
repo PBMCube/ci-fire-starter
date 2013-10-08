@@ -184,7 +184,7 @@ CI Fire Starter comes with a simple user management tool in the administration t
 * Form validation
 * Harnessing the power of Bootstrap to accelerate development
 
-![User Administration](http://s21.postimg.org/lz6llkglj/Screen_Shot_2013_10_08_at_2_20_04_PM.png?raw=true)
+![User Administration](http://s12.postimg.org/5oc54gnnx/Screen_Shot_2013_10_08_at_2_21_23_PM.png?raw=true)
 
 Please note: user 1 is the main administrator - DO NOT MANUALLY DELETE. You can not delete this user from within the
 admin tool.
