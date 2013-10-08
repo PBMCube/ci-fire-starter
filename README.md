@@ -215,7 +215,7 @@ With the API class, you can quite easily create API functions for external appli
 so if you need a more robust solution, such as authentication and API keys, check out Phil Sturgeon's CI Rest Server
 (https://github.com/philsturgeon/codeigniter-restserver).
 
-
+![Sample JSON String](http://s18.postimg.org/w8wflbka1/Screen_Shot_2013_10_08_at_2_38_35_PM.png?raw=true)
 
 ##INSTALLATION
 
