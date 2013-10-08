@@ -18,8 +18,8 @@ Here is what's included:
 * Includes auto-loaded core config file
 * Includes auto-loaded core language file
 * Includes auto-loaded core helper file
-    - Human-readable JSON string output for API functions
-    - Array to CSV exporting
+    + Human-readable JSON string output for API functions
+    + Array to CSV exporting
 * Basic admin tool with authentication, dashboard and user management
 
 That should be the absolute basic things you need to get started on most projects. While there are many great CMS apps
@@ -61,19 +61,19 @@ Phil Sturgeon wrote a very helpful blog post years ago called "CodeIgniter Base 
 applied to CI Fire Starter. There is a file in /application/core called MY_Controller.php which includes the Public,
 Private, Admin and API base classes. This allows you to use shared functionality.
 
-MY_Controller
+####MY_Controller
 
 This extends the MX (Modular Extensions) controller and defines header data that will get passed to views as well as has
 a setting to enable or disable the CI Profiler.
 
-Understanding Header Data
+####Understanding Header Data
 
-site_title    : the title of the website which gets inserted into the document head
-keywords      : meta keywords inserted into the document head
-description   : meta description inserted into the document head
-css_files     : an array of css files to insert into the document head
-js_files      : an array of javascript libraries to insert into the document body
-js_files_i18n : an array of javascript files with internationalization to insert into the document body (see more about these below)
+* site_title    : the title of the website which gets inserted into the document head
+* keywords      : meta keywords inserted into the document head
+* description   : meta description inserted into the document head
+* css_files     : an array of css files to insert into the document head
+* js_files      : an array of javascript libraries to insert into the document body
+* js_files_i18n : an array of javascript files with internationalization to insert into the document body (see more about these below)
 
 Header data can be appended and/or overwritten from any controller function.
 
@@ -130,19 +130,25 @@ In application/libraries is a file Jsi18n.php. This clever library allows you to
 through CI language files and was inspired by Alexandros D on coderwall.com (https://coderwall.com/p/j88iog).
 
 Load this library in the autoload.php file or manually in your controller:
+
     $this->load->library('jsi18n');
 
 In your language file:
+
     $lang['alert_message'] = "This is my alert message!";
 
 In your JS files, place your language key inside double braces:
+
     function myFunction() {
         alert("{{alert_message}}");
     }
 
 Render the Javascript file in your template file:
+
     <script type="text/javascript"><?php echo $this->jsi18n->translate("/themes/admin/js/my_javascript_i18n.js"); ?></script>
+
 OR in your header data array:
+
     $this->header_data = array_merge_recursive($this->header_data, array(
         'js_files_i18n' => array(
             $this->jsi18n->translate("/themes/admin/js/my_javascript_i18n.js")
@@ -156,7 +162,9 @@ functions not working when using Modular Extensions. This library is automatical
 have to include $this in your validation:
 
     if ($this->form_validation->run() == FALSE)
+
 becomes
+
     if ($this->form_validation->run($this) == FALSE)
 
 You can see this being used in the auth module login controller. For more about this fix, check out Mahbubur Rahman's
@@ -191,9 +199,10 @@ b) themes/default/views/welcome_message.php. B will override A as long as it exi
 a temporary change to a view and don't want to lose the original view. The overrides are handled from within
 application/core/MY_Loader.php.
 
-Override Default Themes
+####Override Default Themes
 
 In addition to overriding module views from within your theme, you can also override a theme from any controller:
+
     $this->set_theme('[THEME FOLDER]');
 
 
