@@ -1,7 +1,7 @@
 ci-fire-starter
 ===============
 
-INTRODUCTION
+#INTRODUCTION
 
 CI Fire Starter is simply a basic framework for starting a new project that doesn't have a complex API to learn or extra
 functionality you probably don't need. It is not a CMS nor is it an application builder. It is a skeleton application
