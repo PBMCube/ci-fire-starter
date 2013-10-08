@@ -1,7 +1,7 @@
 ci-fire-starter
 ===============
 
-#INTRODUCTION
+##INTRODUCTION
 
 CI Fire Starter is simply a basic framework for starting a new project that doesn't have a complex API to learn or extra
 functionality you probably don't need. It is not a CMS nor is it an application builder. It is a skeleton application
@@ -39,7 +39,7 @@ http://php.net/.
 
 
 
-MODULAR
+##MODULAR
 
 CI Fire Starter is set up to be modular, thanks to wiredesign's Modular Extensions
 (https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc). The modules are located in
@@ -54,7 +54,7 @@ CI Fire Starter comes with 5 modules:
 
 
 
-BASE CLASSES
+##BASE CLASSES
 
 Phil Sturgeon wrote a very helpful blog post years ago called "CodeIgniter Base Classes: Keeping it DRY"
 (http://philsturgeon.co.uk/blog/2010/02/CodeIgniter-Base-Classes-Keeping-it-DRY). The methods he described have been
@@ -66,55 +66,54 @@ MY_Controller
 This extends the MX (Modular Extensions) controller and defines header data that will get passed to views as well as has
 a setting to enable or disable the CI Profiler.
 
-    Understanding Header Data
+Understanding Header Data
 
-    site_title    : the title of the website which gets inserted into the document head
-    keywords      : meta keywords inserted into the document head
-    description   : meta description inserted into the document head
-    css_files     : an array of css files to insert into the document head
-    js_files      : an array of javascript libraries to insert into the document body
-    js_files_i18n : an array of javascript files with internationalization to insert into the document body (see more
-                    about these below)
+site_title    : the title of the website which gets inserted into the document head
+keywords      : meta keywords inserted into the document head
+description   : meta description inserted into the document head
+css_files     : an array of css files to insert into the document head
+js_files      : an array of javascript libraries to insert into the document body
+js_files_i18n : an array of javascript files with internationalization to insert into the document body (see more about these below)
 
-    Header data can be appended and/or overwritten from any controller function.
+Header data can be appended and/or overwritten from any controller function.
 
-Public_Controller
+####Public_Controller
 
 This extends MY_Controller and drives all your public pages (home page, etc). Any controller that extends
 Public_Controller will be open for the whole world to see.
 
-Private_Controller
+####Private_Controller
 
 This extends MY_Controller and drives all your private pages (user profile, etc). Any controller that extends
 Private_Controller will require authentication. Specific page requests are stored in session and will redirect upon
 successful authentication.
 
-Admin_Controller
+####Admin_Controller
 
 This extends MY_Controller and drives all your administration pages. Any controller that extends Admin_Controller will
 require authentication from a user with administration privileges. Specific page requests are stored in session and will
 redirect upon successful authentication.
 
-API_Controller
+####API_Controller
 
 This extends MY_Controller and drives all your API functions. Any controller that extends API_Controller will be open
 for the whole world to see (see below for details).
 
 
 
-CORE FILES
+##CORE FILES
 
-Core Config
+####Core Config
 
 In application/config there is a file core.php. This file allows you to set site-wide variables. It is set up with site
 name, site version, default templates, pagination settings, enable/disable the profiler and error delimiters.
 
-Core Language
+####Core Language
 
 In application/language/english is a file core_lang.php. This file allows you to set language variables that could be
 used throughout the entire site (such as the words Home or Logout).
 
-Core Helper
+####Core Helper
 
 In application/helper is a file core_helper.php. This includes the following useful functions:
 * display_json($array) - used to output an array as JSON in a human-readable format - used by the API
@@ -123,9 +122,9 @@ In application/helper is a file core_helper.php. This includes the following use
 
 
 
-LIBRARIES
+##LIBRARIES
 
-Jsi18n
+####Jsi18n
 
 In application/libraries is a file Jsi18n.php. This clever library allows you to internationalize your JavaScript files
 through CI language files and was inspired by Alexandros D on coderwall.com (https://coderwall.com/p/j88iog).
@@ -150,22 +149,22 @@ OR in your header data array:
         )
     ));
 
-MY_Form_validation
+####MY_Form_validation
 
 In application/libraries is a file My_Form_validation.php. This small library fixes the issue with validation callback
 functions not working when using Modular Extensions. This library is automatically loaded, so the only difference is you
 have to include $this in your validation:
 
-if ($this->form_validation->run() == FALSE)
+    if ($this->form_validation->run() == FALSE)
 becomes
-if ($this->form_validation->run($this) == FALSE)
+    if ($this->form_validation->run($this) == FALSE)
 
 You can see this being used in the auth module login controller. For more about this fix, check out Mahbubur Rahman's
 blog (http://www.mahbubblog.com/php/form-validation-callbacks-in-hmvc-in-codeigniter/).
 
 
 
-USER MANAGEMENT
+##USER MANAGEMENT
 
 CI Fire Starter comes with a simple user management tool in the administration tool. It does use a database table called
 'users'. This tool demonstrates a lot of basic but important functionality:
@@ -182,7 +181,7 @@ admin tool.
 
 
 
-THEMES
+##THEMES
 
 No, I did not include a templating library, such as Smarty, nor did I utilize CI's built in parser. If you really wanted
 to include one, you could check out Phil Sturgeon's CI-Dwoo extension (https://github.com/philsturgeon/codeigniter-dwoo).
@@ -199,7 +198,7 @@ In addition to overriding module views from within your theme, you can also over
 
 
 
-APIS
+##APIS
 
 With the API class, you can quite easily create API functions for external applications. There is no security on these,
 so if you need a more robust solution, such as authentication and API keys, check out Phil Sturgeon's CI Rest Server
@@ -207,25 +206,26 @@ so if you need a more robust solution, such as authentication and API keys, chec
 
 
 
-INSTALLATION
+##INSTALLATION
 
 This is super simple:
 
 * Create a new database and import the included sql file
-    - default administrator username/password is admin/admin
+    + default administrator username/password is admin/admin
 * Modify the application/config/config.php
-    - line 183: set your log threshold - I usually set it to 1 for production environments
-    - line 227: set your encryption key
+    + line 183: set your log threshold - I usually set it to 1 for production environments
+    + line 227: set your encryption key
 * Modify the application/config/core.php
-    - set your site name
+    + set your site name
 * Modify application/config/database.php and connect to your database
 * Upload all files to your server
 * Visit your new URL
-    - The default welcome page includes links to the admin tool and the private user profile page
+    + The default welcome page includes links to the admin tool and the private user profile page
+* Make sure you log in to admin and change the administrator password!
 
 
 
-CONCLUSION
+##CONCLUSION
 
 Well, that's it in a nutshell. As I said earlier, CI Fire Starter does not attempt to be a full-blown CMS. You'd have
 to build that functionality on your own. If you want a great CMS build on CodeIgniter, check out one of these
