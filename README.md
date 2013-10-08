@@ -37,7 +37,7 @@ NOTE: This documentation assumes you are already familiar with PHP and CodeIgnit
 CodeIgniter, visit the user guide at http://ellislab.com/codeigniter/user-guide/. To learn more about PHP, visit
 http://php.net/.
 
-
+![Welcome Screen](http://s2.postimg.org/io7hm3qqh/Screen_Shot_2013_10_08_at_2_20_04_PM.png?raw=true)
 
 ##MODULAR
 
@@ -183,6 +183,8 @@ CI Fire Starter comes with a simple user management tool in the administration t
 * Exporting lists to CSV
 * Form validation
 * Harnessing the power of Bootstrap to accelerate development
+
+![User Administration](http://s21.postimg.org/lz6llkglj/Screen_Shot_2013_10_08_at_2_20_04_PM.png?raw=true)
 
 Please note: user 1 is the main administrator - DO NOT MANUALLY DELETE. You can not delete this user from within the
 admin tool.
