@@ -251,3 +251,23 @@ awesome apps:
   been slow going)
 * Bonfire: http://cibonfire.com/ (this is more of an application builder than a full CMS)
 * FuelCMS: http://getfuelcms.com/
+
+
+
+##WHAT'S NEW
+
+####Version 1.0.1
+10/10/2013
+
+* Removed admin template includes
+* Made login more secure using salt
+* Modified users table to handle the login change
+    + password field is now char(128)
+    + added salt field char(128)
+* Added this what-new.txt file
+* Added road-map.txt
+
+####Version 1.0.0
+10/08/2013
+
+* Initial version
