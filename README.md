@@ -271,3 +271,11 @@ awesome apps:
 10/08/2013
 
 * Initial version
+
+
+
+##ROADMAP
+
+* Add registration form and forgot password capabilities
+* Add a media manager module for uploading and managing files
+* Add settings database table and admin interface for managing settings
