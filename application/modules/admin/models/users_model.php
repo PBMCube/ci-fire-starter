@@ -101,8 +101,13 @@ class Users_model extends CI_Model {
 
         if ($data['password'] != '')
         {
+            // secure password
+            $salt     = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), TRUE));
+            $password = hash('sha512', $data['password'] . $salt);
+
             $sql .= "
-                    password = '" . md5($data['password']) . "',
+                    password = '{$password}',
+                    salt = '{$salt}',
                 ";
         }
 
@@ -137,12 +142,17 @@ class Users_model extends CI_Model {
         if (empty($data))
             return FALSE;
 
+        // secure password
+        $salt     = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), TRUE));
+        $password = hash('sha512', $data['password'] . $salt);
+
         $sql = "
                 INSERT INTO users (
-                    username, password, first_name, last_name, email, is_admin, status, deleted, created, updated
+                    username, password, salt, first_name, last_name, email, is_admin, status, deleted, created, updated
                 ) VALUES (
                     '" . $data['username'] . "',
-                    '" . md5($data['password']) . "',
+                    '" . $password . "',
+                    '" . $salt . "',
                     '" . $data['first_name'] . "',
                     '" . $data['last_name'] . "',
                     '" . $data['email'] . "',
@@ -165,7 +175,7 @@ class Users_model extends CI_Model {
 
     
     /**
-     * Delete an existing user
+     * Soft delete an existing user
      * 
      * @param int $id
      * @return bool

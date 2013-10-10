@@ -27,6 +27,8 @@ class Auth_model extends CI_Model {
                 SELECT 
                     id,
                     username,
+                    password,
+                    salt,
                     first_name,
                     last_name,
                     email,
@@ -37,17 +39,34 @@ class Auth_model extends CI_Model {
                 FROM users
                 WHERE (username = '{$username}'
                         OR email = '{$username}')
-                    AND password = '" . md5($password) . "'
                     AND status = '1'
                     AND deleted = '0'
+                LIMIT 1
             ";
 
         $query = $this->db->query($sql);
 
         if ($query->num_rows())
-            return $query->row_array();
+        {
+            $results = $query->row_array();
+            $salted_password = hash('sha512', $password . $results['salt']);
+
+            if ($results['password'] == $salted_password)
+            {
+                unset($results['password']);
+                unset($results['salt']);
+                return $results;
+            }
+            else
+            {
+                return FALSE;
+            }
+        }
         else
+        {
             return FALSE;
+        }
+
     }
 
 }

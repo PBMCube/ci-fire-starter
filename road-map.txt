@@ -1,0 +1,5 @@
+CI FIRE STARTER ROAD MAP
+
+* Add registration form and forgot password capabilities
+* Add a media manager module for uploading and managing files
+* Add settings database table and admin interface for managing settings

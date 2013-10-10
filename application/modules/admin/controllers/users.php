@@ -150,13 +150,13 @@ class Users extends Admin_Controller {
     {
         // validators
         $this->form_validation->set_error_delimiters($this->config->item('error_delimeter_left'), $this->config->item('error_delimeter_right'));
-        $this->form_validation->set_rules('username', lang('admin input username'), 'required|trim|xss_clean|max_length[10]');
-        $this->form_validation->set_rules('first_name', lang('users input first_name'), 'required|trim|xss_clean|max_length[32]');
-        $this->form_validation->set_rules('last_name', lang('users input last_name'), 'required|trim|xss_clean|max_length[32]');
+        $this->form_validation->set_rules('username', lang('admin input username'), 'required|trim|xss_clean|min_length[5]|max_length[30]');
+        $this->form_validation->set_rules('first_name', lang('users input first_name'), 'required|trim|xss_clean|min_length[2]|max_length[32]');
+        $this->form_validation->set_rules('last_name', lang('users input last_name'), 'required|trim|xss_clean|min_length[2]|max_length[32]');
         $this->form_validation->set_rules('email', lang('users input email'), 'required|trim|xss_clean|max_length[128]|valid_email');
         $this->form_validation->set_rules('status', lang('users input is_admin'), 'required|xss_clean|numeric');
         $this->form_validation->set_rules('is_admin', lang('users input status'), 'required|xss_clean|numeric');
-        $this->form_validation->set_rules('password', lang('admin input password'), 'required|trim|xss_clean|min_length[6]');
+        $this->form_validation->set_rules('password', lang('admin input password'), 'required|trim|xss_clean|min_length[5]');
         $this->form_validation->set_rules('password_repeat', lang('admin input password_repeat'), 'required|trim|xss_clean|matches[password]');
 
         if ($this->form_validation->run($this) == TRUE)
@@ -213,13 +213,13 @@ class Users extends Admin_Controller {
 
         // validators
         $this->form_validation->set_error_delimiters($this->config->item('error_delimeter_left'), $this->config->item('error_delimeter_right'));
-        $this->form_validation->set_rules('username', lang('admin input username'), 'required|trim|xss_clean|max_length[10]');
-        $this->form_validation->set_rules('first_name', lang('users input first_name'), 'required|trim|xss_clean|max_length[32]');
-        $this->form_validation->set_rules('last_name', lang('users input last_name'), 'required|trim|xss_clean|max_length[32]');
+        $this->form_validation->set_rules('username', lang('admin input username'), 'required|trim|xss_clean|min_length[5]|max_length[30]');
+        $this->form_validation->set_rules('first_name', lang('users input first_name'), 'required|trim|xss_clean|min_length[2]|max_length[32]');
+        $this->form_validation->set_rules('last_name', lang('users input last_name'), 'required|trim|xss_clean|min_length[2]|max_length[32]');
         $this->form_validation->set_rules('email', lang('users input email'), 'required|trim|xss_clean|max_length[128]|valid_email');
         $this->form_validation->set_rules('status', lang('users input status'), 'required|numeric');
         $this->form_validation->set_rules('is_admin', lang('users input is_admin'), 'required|numeric');
-        $this->form_validation->set_rules('password', lang('admin input password'), 'min_length[6]|matches[password_repeat]');
+        $this->form_validation->set_rules('password', lang('admin input password'), 'min_length[5]|matches[password_repeat]');
         $this->form_validation->set_rules('password_repeat', lang('admin input password_repeat'), '');
 
         if ($this->form_validation->run($this) == TRUE)

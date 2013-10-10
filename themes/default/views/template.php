@@ -10,6 +10,8 @@
     <title><?php echo $page_title; ?> - <?php echo $site_title; ?></title>
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css?v=<?php echo $site_version; ?>">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css?v=<?php echo $site_version; ?>">
+
     <?php if (isset($css_files) && is_array($css_files)) : ?>
         <?php foreach ($css_files as $css) : ?>
             <?php if ( ! is_null($css)) : ?>

@@ -5,7 +5,7 @@
 
 // Site Details
 $config['site_name']             = "CI Fire Starter";
-$config['site_version']          = "1.0.0";
+$config['site_version']          = "1.0.1";
 $config['default_theme']         = "default";
 $config['default_admin_theme']   = "admin";
 
