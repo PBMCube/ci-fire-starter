@@ -34,13 +34,13 @@
                 <tr>
                     <th>
                     </th>
-                    <th>
+                    <th<?php echo ((isset($filters['username'])) ? ' class="has-success"' : ''); ?>>
                         <?php echo form_input(array('name'=>'username', 'id'=>'username', 'class'=>'form-control input-sm', 'placeholder'=>lang('users input username'), 'value'=>set_value('username', ((isset($filters['username'])) ? $filters['username'] : '')))); ?>
                     </th>
-                    <th>
+                    <th<?php echo ((isset($filters['first_name'])) ? ' class="has-success"' : ''); ?>>
                         <?php echo form_input(array('name'=>'first_name', 'id'=>'first_name', 'class'=>'form-control input-sm', 'placeholder'=>lang('users input first_name'), 'value'=>set_value('first_name', ((isset($filters['first_name'])) ? $filters['first_name'] : '')))); ?>
                     </th>
-                    <th>
+                    <th<?php echo ((isset($filters['last_name'])) ? ' class="has-success"' : ''); ?>>
                         <?php echo form_input(array('name'=>'last_name', 'id'=>'username', 'class'=>'form-control input-sm', 'placeholder'=>lang('users input last_name'), 'value'=>set_value('last_name', ((isset($filters['last_name'])) ? $filters['last_name'] : '')))); ?>
                     </th>
                     <th colspan="3">
@@ -55,22 +55,22 @@
                 <?php if ($total) : ?>
                     <?php foreach ($items as $item) : ?>
                         <tr>
-                            <td>
+                            <td<?php echo (($sort == 'id') ? ' class="sorted"' : ''); ?>>
                                 <?php echo $item['id']; ?>
                             </td>
-                            <td>
+                            <td<?php echo (($sort == 'username') ? ' class="sorted"' : ''); ?>>
                                 <?php echo $item['username']; ?>
                             </td>
-                            <td>
+                            <td<?php echo (($sort == 'first_name') ? ' class="sorted"' : ''); ?>>
                                 <?php echo $item['first_name']; ?>
                             </td>
-                            <td>
+                            <td<?php echo (($sort == 'last_name') ? ' class="sorted"' : ''); ?>>
                                 <?php echo $item['last_name']; ?>
                             </td>
-                            <td>
+                            <td<?php echo (($sort == 'status') ? ' class="sorted"' : ''); ?>>
                                 <?php echo ($item['status']) ? '<span class="active">' . lang('admin input active') . '</span>' : '<span class="inactive">' . lang('admin input inactive') . '</span>'; ?>
                             </td>
-                            <td>
+                            <td<?php echo (($sort == 'is_admin') ? ' class="sorted"' : ''); ?>>
                                 <?php echo ($item['is_admin']) ? lang('core text yes') : lang('core text no'); ?>
                             </td>
                             <td>
@@ -97,7 +97,10 @@
 
 <div class="row well well-sm">
     <div class="col-md-2">
-        <select id="limit" class="form-control">
+        <label class="pull-left"><?php echo sprintf(lang('users label rows'), $total); ?></label>
+    </div>
+    <div class="col-md-2">
+        <select id="limit" class="form-control pull-left">
             <option value="10"<?php echo ($limit == 10 || ($limit != 10 && $limit != 25 && $limit != 50 && $limit != 75 && $limit != 100)) ? ' selected' : ''; ?>>10 <?php echo lang('admin input items_per_page'); ?></option>
             <option value="25"<?php echo ($limit == 25) ? ' selected' : ''; ?>>25 <?php echo lang('admin input items_per_page'); ?></option>
             <option value="50"<?php echo ($limit == 50) ? ' selected' : ''; ?>>50 <?php echo lang('admin input items_per_page'); ?></option>
@@ -105,7 +108,7 @@
             <option value="100"<?php echo ($limit == 100) ? ' selected' : ''; ?>>100 <?php echo lang('admin input items_per_page'); ?></option>
         </select>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
         <?php echo $pagination; ?>
     </div>
     <div class="col-md-2">

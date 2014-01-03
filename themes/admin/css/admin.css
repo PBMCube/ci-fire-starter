@@ -34,6 +34,10 @@ span.inactive {
     color: #ff0000;
 }
 
+td.sorted {
+    background-color: #f1fced !important;
+}
+
 /** Glyphicon Coloring **/
 
 .icon {

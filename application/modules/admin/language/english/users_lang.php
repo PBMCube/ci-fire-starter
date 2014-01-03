@@ -19,6 +19,9 @@ $lang['users col is_admin']             = "Admin";
 $lang['users col last_name']            = "Last Name";
 $lang['users col username']             = "Username";
 
+// Form Labels
+$lang['users label rows']               = "%s row(s)";
+
 // Form Inputs
 $lang['users input email']              = "Email";
 $lang['users input first_name']         = "First Name";

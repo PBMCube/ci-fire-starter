@@ -1,4 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * Outputs an array in a user-readable JSON format
@@ -124,6 +124,11 @@ function array_to_csv($array=array(), $filename="export.csv")
                     fputcsv($output, array_keys($row));
                     $header_displayed = TRUE;
                 }
+
+                // clean the data
+                $allowed = '/[^a-zA-Z0-9_ %\|\[\]\.\(\)%&-]/s';
+                foreach ($row as $key=>$value)
+                    $row[$key] = preg_replace($allowed, '', $value);
 
                 // insert the data
                 fputcsv($output, $row);

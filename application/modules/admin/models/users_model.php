@@ -69,7 +69,7 @@ class Users_model extends CI_Model {
         $sql = "
                 SELECT *
                 FROM users
-                WHERE id = {$id}
+                WHERE id = " . $this->db->escape($id) . "
                     AND deleted = '0'
             ";
                 
@@ -96,7 +96,7 @@ class Users_model extends CI_Model {
         $sql = "
                 UPDATE users
                 SET
-                    username = '" . $data['username'] . "',
+                    username = " . $this->db->escape($data['username']) . ",
             ";
 
         if ($data['password'] != '')
@@ -106,19 +106,19 @@ class Users_model extends CI_Model {
             $password = hash('sha512', $data['password'] . $salt);
 
             $sql .= "
-                    password = '{$password}',
-                    salt = '{$salt}',
+                    password = " . $this->db->escape($password) . ",
+                    salt = " . $this->db->escape($salt) . ",
                 ";
         }
 
         $sql .= "
-                    first_name = '" . $data['first_name'] . "',
-                    last_name = '" . $data['last_name'] . "',
-                    email = '" . $data['email'] . "',
-                    is_admin = '" . $data['is_admin'] . "',
-                    status = '" . $data['status'] . "',
+                    first_name = " . $this->db->escape($data['first_name']) . ",
+                    last_name = " . $this->db->escape($data['last_name']) . ",
+                    email = " . $this->db->escape($data['email']) . ",
+                    is_admin = " . $this->db->escape($data['is_admin']) . ",
+                    status = " . $this->db->escape($data['status']) . ",
                     updated = NOW()
-                WHERE id = " . $data['id'] . "
+                WHERE id = " . $this->db->escape($data['id']) . "
                     AND deleted = '0'
             ";
 
@@ -150,15 +150,15 @@ class Users_model extends CI_Model {
                 INSERT INTO users (
                     username, password, salt, first_name, last_name, email, is_admin, status, deleted, created, updated
                 ) VALUES (
-                    '" . $data['username'] . "',
-                    '" . $password . "',
-                    '" . $salt . "',
-                    '" . $data['first_name'] . "',
-                    '" . $data['last_name'] . "',
-                    '" . $data['email'] . "',
-                    '" . $data['is_admin'] . "',
-                    '" . $data['status'] . "',
-                    '0',
+                    " . $this->db->escape($data['username']) . ",
+                    " . $this->db->escape($password) . ",
+                    " . $this->db->escape($salt) . ",
+                    " . $this->db->escape($data['first_name']) . ",
+                    " . $this->db->escape($data['last_name']) . ",
+                    " . $this->db->escape($data['email']) . ",
+                    " . $this->db->escape($data['is_admin']) . ",
+                    " . $this->db->escape($data['status']) . ",
+                    0,
                     NOW(),
                     NOW()
                 )
@@ -192,7 +192,7 @@ class Users_model extends CI_Model {
                     status = '0',
                     deleted = '1',
                     updated = NOW()
-                WHERE id = {$id}
+                WHERE id = " . $this->db->escape($id) . "
                     AND id > 1
             ";
 
