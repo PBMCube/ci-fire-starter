@@ -1,5 +1,5 @@
 <div class="row table-responsive">
-    <form action="/<?php echo "{$this_url}?sort={$sort}&dir={$dir}&limit={$limit}&offset=0{$filter}"; ?>" method="post" accept-charset="utf-8" id="filters">
+    <form action="<?php echo "{$this_url}?sort={$sort}&dir={$dir}&limit={$limit}&offset=0{$filter}"; ?>" method="post" accept-charset="utf-8" id="filters">
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
