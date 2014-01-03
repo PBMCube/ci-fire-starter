@@ -45,10 +45,4 @@ $(document).ready(function() {
         window.location.href = "/admin/users/delete/" + $(this).attr('data-id');
     });
 
-
-    // Jsi18n Demonstration
-    $('#jsi18n-sample').click(function() {
-        alert("{{admin jsi18n-sample}}");
-    });
-
 });

@@ -34,7 +34,7 @@
             <div class="row">
                 <?php // Nav bar left ?>
                 <ul class="nav navbar-nav">
-                    <li<?php echo ($active == 'admin/dashboard') ? ' class="active"' : ''; ?>><a href="/admin/dashboard"><?php echo lang('admin nav dashboard'); ?></a></li>
+                    <li<?php echo ($active == 'admin/dashboard') ? ' class="active"' : ''; ?>><a href="/admin"><?php echo lang('admin nav dashboard'); ?></a></li>
                     <li<?php echo ($active == 'admin/users') ? ' class="active"' : ''; ?>><a href="/admin/users"><?php echo lang('admin nav users'); ?></a></li>
                 </ul>
                 <?php // Nav bar right ?>

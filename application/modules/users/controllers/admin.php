@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Users extends Admin_Controller {
+class Admin extends Admin_Controller {
 
     /**
      * @var string
@@ -16,7 +16,6 @@ class Users extends Admin_Controller {
         parent::__construct();
 
         // load the language files
-        $this->lang->load('admin');
         $this->lang->load('users');
 
         // load the users model
@@ -138,7 +137,7 @@ class Users extends Admin_Controller {
             );
 
         // load views
-        $data['content'] = $this->load->view('users/list', $content_data, TRUE);
+        $data['content'] = $this->load->view('admin/list', $content_data, TRUE);
         $this->load->view('admin_template', $data);
     }
 
@@ -188,7 +187,7 @@ class Users extends Admin_Controller {
         );
 
         // load views
-        $data['content'] = $this->load->view('users/form', $content_data, TRUE);
+        $data['content'] = $this->load->view('admin/form', $content_data, TRUE);
         $this->load->view('admin_template', $data);
     }
 
@@ -252,7 +251,7 @@ class Users extends Admin_Controller {
             );
 
         // load views
-        $data['content'] = $this->load->view('users/form', $content_data, TRUE);
+        $data['content'] = $this->load->view('admin/form', $content_data, TRUE);
         $this->load->view('admin_template', $data);
     }
 

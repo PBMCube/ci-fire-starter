@@ -26,7 +26,7 @@ class Login extends Public_Controller {
         {
             $logged_in_user = $this->session->userdata('logged_in');
             if ($logged_in_user['is_admin'])
-                redirect('admin/dashboard');
+                redirect('admin');
             else
                 redirect(base_url());
         }
@@ -48,7 +48,7 @@ class Login extends Public_Controller {
             {
                 $logged_in_user = $this->session->userdata('logged_in');
                 if ($logged_in_user['is_admin'])
-                    redirect('admin/dashboard');
+                    redirect('admin');
                 else
                     redirect(base_url());
             }
@@ -64,7 +64,7 @@ class Login extends Public_Controller {
         $data = $this->header_data;
 
         // load views
-        $data['content'] = $this->load->view('login', NULL, TRUE);
+        $data['content'] = $this->load->view('auth/login', NULL, TRUE);
         $this->load->view('login_template', $data);
     }
 

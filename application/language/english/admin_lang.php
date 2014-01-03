@@ -28,6 +28,3 @@ $lang['admin input username']           = "Username";
 // Table Columns
 $lang['admin col actions']              = "Actions";
 $lang['admin col status']               = "Status";
-
-// Sample jsi18n message
-$lang['admin jsi18n-sample']            = "This is a demonstration of the Jsi18n library. It takes text from a language file and inserts it into your Javascripts. See the jsi18n.php library and admin_i18n.js for usage.";

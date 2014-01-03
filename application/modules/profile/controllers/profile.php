@@ -9,7 +9,7 @@ class Profile extends Private_Controller {
     {
         parent::__construct();
 
-        // load the admin language file
+        // load the language file
         $this->lang->load('profile');
     }
 
