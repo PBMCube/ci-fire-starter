@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -38,32 +38,31 @@
 |
 */
 
-$route['default_controller']            = "welcome";
-$route['404_override']                  = "";
+$route['default_controller']                   = "welcome";
+$route['404_override']                         = "";
 
-// Admin Routes
-$route['admin/([a-zA-Z0-9_-]+)/(:any)/(:any)'] = '$1/admin/$2/$3';
-$route['admin/([a-zA-Z0-9_-]+)/(:any)']	= '$1/admin/$2';
-$route['admin/([a-zA-Z0-9_-]+)']        = '$1/admin/index';
+// Built-In Admin Routes
+$route['admin']                                = "admin/index";
+$route['admin/settings']                       = "admin/settings";
 
-// Auth Routes
-$route['login']                         = "users/login";
-$route['logout']                        = "users/logout";
+// Module Admin Routes
+$route['admin/([a-zA-Z0-9_-]+)']               = "$1/admin/index";
+$route['admin/([a-zA-Z0-9_-]+)/(:any)']	       = "$1/admin/$2";
+$route['admin/([a-zA-Z0-9_-]+)/(:any)/(:any)'] = "$1/admin/$2/$3";
 
 // Load module route files
-$handle = opendir(APPPATH.'modules');
+$handle = opendir(APPPATH . 'modules');
 if ($handle)
 {
 	while ( false !== ($module = readdir($handle)) )
 	{
 		if (substr($module, 0, 1) != ".")
 		{
-			if ( file_exists(APPPATH . 'modules/' . $module . '/config/routes.php') )
-			{
+			if (file_exists(APPPATH . 'modules/' . $module . '/config/routes.php'))
 				include(APPPATH . 'modules/' . $module . '/config/routes.php');
-			}
 		}
 	}
 }
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

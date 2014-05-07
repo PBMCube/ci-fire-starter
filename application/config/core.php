@@ -4,13 +4,11 @@
  */
 
 // Site Details
-$config['site_name']             = "CI Fire Starter";
-$config['site_version']          = "1.0.1";
+$config['site_version']          = "2.0.0";
 $config['default_theme']         = "default";
 $config['default_admin_theme']   = "admin";
 
 // Pagination
-$config['per_page_limit']        = 10;
 $config['num_links']             = 8;
 $config['full_tag_open']         = "<div class=\"pagination\">";
 $config['full_tag_close']        = "</div>";

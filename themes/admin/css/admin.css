@@ -16,6 +16,10 @@ body {
 
 /** Bootstrap Overrides **/
 
+.padding-override {
+    padding: 0 15px !important;
+}
+
 body.modal-open,
 .modal-open .navbar-fixed-top,
 .modal-open .navbar-fixed-bottom {
@@ -38,14 +42,53 @@ td.sorted {
     background-color: #f1fced !important;
 }
 
-/** Glyphicon Coloring **/
 
-.icon {
-    margin: 0 5px;
+/*****************************************************************************/
+/*  Additional color classes for striped tables (Bootstrap Standard Colors)  */
+/*****************************************************************************/
+
+.table-striped-error tbody > tr:nth-child(odd) > td,
+.table-striped-error tbody > tr:nth-child(odd) > th {
+    background-color: #f2dede; /* red-bar */
 }
-.icon-blue   { color: #428bca; }
-.icon-green  { color: #47a447; }
-.icon-cyan   { color: #39b3d7; }
-.icon-orange { color: #ed9c28; }
-.icon-red    { color: #d2322d; }
 
+.table-hover-error > tbody > tr:hover > td,
+.table-hover-error > tbody > tr:hover > th {
+    background-color: #edd9d9 !important;
+}
+
+/*****************************************************************************/
+
+.table-striped-success tbody > tr:nth-child(odd) > td,
+.table-striped-success tbody > tr:nth-child(odd) > th {
+    background-color: #dff0d8; /* green-bar */
+}
+
+.table-hover-success > tbody > tr:hover > td,
+.table-hover-success > tbody > tr:hover > th {
+    background-color: #daebd3 !important;
+}
+
+/*****************************************************************************/
+
+.table-striped-info tbody > tr:nth-child(odd) > td,
+.table-striped-info tbody > tr:nth-child(odd) > th {
+    background-color: #d9edf7; /* blue-bar */
+}
+
+.table-hover-info > tbody > tr:hover > td,
+.table-hover-info > tbody > tr:hover > th {
+    background-color: #d4e8f2 !important;
+}
+
+/*****************************************************************************/
+
+.table-striped-warning tbody > tr:nth-child(odd) > td,
+.table-striped-warning tbody > tr:nth-child(odd) > th {
+    background-color: #fcf8e3; /* yellow-bar */
+}
+
+.table-hover-warning > tbody > tr:hover > td,
+.table-hover-warning > tbody > tr:hover > th {
+    background-color: #f7f3de !important;
+}

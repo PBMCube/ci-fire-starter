@@ -9,7 +9,10 @@ class MY_Controller extends MX_Controller {
     /**
      * Common data
      */
+    public $settings;
     public $header_data;
+    public $current_uri;
+    public $error;
 
 
     /**
@@ -19,19 +22,31 @@ class MY_Controller extends MX_Controller {
     {
         parent::__construct();
 
+        // load core model
+        $this->load->model('core_model');
+
+        // get settings
+        $settings = $this->core_model->get_settings();
+        foreach ($settings as $setting)
+            $this->settings->{$setting['name']} = $setting['value'];
+
+        // get current uri
+        $this->current_uri = "/" . uri_string();
+
         // Set global header data - can be merged with or overwritten in module controllers
         $this->header_data = array(
-                'site_title'    => $this->config->item('site_name'),
-                'site_version'  => $this->config->item('site_version'),
-                'keywords'      => "these, are, keywords",
-                'description'   => "This is the description.",
-                'css_files'     => array(
-                    ),
-                'js_files'      => array(
-                    ),
-                'js_files_i18n' => array(
-                    )
-            );
+            'site_title'    => $this->settings->site_name,
+            'site_version'  => $this->config->item('site_version'),
+            'keywords'      => $this->settings->meta_keywords,
+            'description'   => $this->settings->meta_description,
+            'css_files'     => array(),
+            'js_files'      => array(),
+            'js_files_i18n' => array()
+        );
+
+        // set the time zone
+        $timezones = $this->config->item('timezones');
+        date_default_timezone_set($timezones[$this->settings->timezones]);
 
         // enable the profiler?
         $this->output->enable_profiler($this->config->item('profiler'));
@@ -46,11 +61,22 @@ class MY_Controller extends MX_Controller {
 class Public_Controller extends MY_Controller {
 
     /**
+     * @var
+     */
+    public $public_nav;
+    public $private_nav;
+
+
+    /**
      * Constructor
      */
     function __construct()
     {
         parent::__construct();
+
+        // load the public and private navigation
+        $this->public_nav  = $this->core_model->get_nav('public', 2, $this->current_uri);
+        $this->private_nav = $this->core_model->get_nav('private', 2, $this->current_uri);
     }
 
 }
@@ -60,6 +86,14 @@ class Public_Controller extends MY_Controller {
  * Base Private Class - used for all private pages
  */
 class Private_Controller extends MY_Controller {
+
+    /**
+     * @var
+     */
+    public $user;
+    public $public_nav;
+    public $private_nav;
+
 
     /**
      * Constructor
@@ -80,6 +114,13 @@ class Private_Controller extends MY_Controller {
 
             redirect('login');
         }
+
+        // get current user
+        $this->user = $this->session->userdata('logged_in');
+
+        // load the public and private navigation
+        $this->public_nav  = $this->core_model->get_nav('public', 2, $this->current_uri);
+        $this->private_nav = $this->core_model->get_nav('private', 2, $this->current_uri);
     }
 
 }
@@ -89,6 +130,13 @@ class Private_Controller extends MY_Controller {
  * Base Admin Class - used for all administration pages
  */
 class Admin_Controller extends MY_Controller {
+
+    /**
+     * @var
+     */
+    public $user;
+    public $admin_nav;
+
 
     /**
      * Constructor
@@ -114,22 +162,25 @@ class Admin_Controller extends MY_Controller {
         }
 
         // make sure this user is setup as admin
-        $logged_in_user = $this->session->userdata('logged_in');
-        if ( ! $logged_in_user['is_admin'])
+        $this->user = $this->session->userdata('logged_in');
+        if ( ! $this->user['is_admin'])
             redirect(base_url());
 
         // load the admin language file
         $this->lang->load('admin');
 
+        // load the admin navigation
+        $this->admin_nav = $this->core_model->get_nav('admin', 1, $this->current_uri);
+
         // set up global header data
         $this->header_data = array_merge_recursive($this->header_data, array(
-                'css_files'     => array(
-                        "/themes/admin/css/admin.css"
-                    ),
-                'js_files_i18n' => array(
-                        $this->jsi18n->translate("/themes/admin/js/admin_i18n.js")
-                    )
-            ));
+            'css_files'     => array(
+                base_url("themes/admin/css/admin.css")
+            ),
+            'js_files_i18n' => array(
+                $this->jsi18n->translate("/themes/admin/js/admin_i18n.js")
+            )
+        ));
     }
 
 }

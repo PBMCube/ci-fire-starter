@@ -28,8 +28,8 @@ class Api extends API_Controller {
     public function users()
     {
         // load the admin users model and language file
-        $this->load->model('admin/users_model');
-        $this->lang->load('admin/admin');
+        $this->load->model('../modules/users/models/users_model');
+        $this->lang->load('admin');
 
         // get user data
         $users = $this->users_model->get_all();

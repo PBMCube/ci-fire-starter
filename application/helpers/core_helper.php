@@ -5,15 +5,18 @@
  *
  * @param array $array
  */
-function display_json($array)
+if ( ! function_exists('display_json'))
 {
-    $data = json_indent($array);
+    function display_json($array)
+    {
+        $data = json_indent($array);
 
-    header('Cache-Control: no-cache, must-revalidate');
-    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-    header('Content-type: application/json');
+        header('Cache-Control: no-cache, must-revalidate');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        header('Content-type: application/json');
 
-    echo $data;
+        echo $data;
+    }
 }
 
 
@@ -23,62 +26,65 @@ function display_json($array)
  * @param array $array - The original array to convert to JSON
  * @return string - Friendly formatted JSON string
  */
-function json_indent($array=array())
+if ( ! function_exists('json_indent'))
 {
-    // make sure array is provided
-    if (empty($array))
-        return NULL;
-
-    //Encode the string
-    $json = json_encode($array);
-
-    $result        = '';
-    $pos           = 0;
-    $str_len       = strlen($json);
-    $indent_str    = '  ';
-    $new_line      = "\n";
-    $prev_char     = '';
-    $out_of_quotes = true;
-
-    for ($i=0; $i<=$str_len; $i++)
+    function json_indent($array=array())
     {
-        // grab the next character in the string
-        $char = substr($json, $i, 1);
+        // make sure array is provided
+        if (empty($array))
+            return NULL;
 
-        // are we inside a quoted string?
-        if ($char == '"' && $prev_char != '\\')
-            $out_of_quotes = !$out_of_quotes;
+        //Encode the string
+        $json = json_encode($array);
 
-        // if this character is the end of an element, output a new line and indent the next line
-        elseif (($char == '}' || $char == ']') && $out_of_quotes)
+        $result        = '';
+        $pos           = 0;
+        $str_len       = strlen($json);
+        $indent_str    = '  ';
+        $new_line      = "\n";
+        $prev_char     = '';
+        $out_of_quotes = true;
+
+        for ($i=0; $i<=$str_len; $i++)
         {
-            $result .= $new_line;
-            $pos--;
+            // grab the next character in the string
+            $char = substr($json, $i, 1);
 
-            for ($j=0; $j<$pos; $j++)
-                $result .= $indent_str;
+            // are we inside a quoted string?
+            if ($char == '"' && $prev_char != '\\')
+                $out_of_quotes = !$out_of_quotes;
+
+            // if this character is the end of an element, output a new line and indent the next line
+            elseif (($char == '}' || $char == ']') && $out_of_quotes)
+            {
+                $result .= $new_line;
+                $pos--;
+
+                for ($j=0; $j<$pos; $j++)
+                    $result .= $indent_str;
+            }
+
+            // add the character to the result string
+            $result .= $char;
+
+            // if the last character was the beginning of an element, output a new line and indent the next line
+            if (($char == ',' || $char == '{' || $char == '[') && $out_of_quotes)
+            {
+                $result .= $new_line;
+
+                if ($char == '{' || $char == '[')
+                    $pos++;
+
+                for ($j=0; $j<$pos; $j++)
+                    $result .= $indent_str;
+            }
+
+            $prev_char = $char;
         }
 
-        // add the character to the result string
-        $result .= $char;
-
-        // if the last character was the beginning of an element, output a new line and indent the next line
-        if (($char == ',' || $char == '{' || $char == '[') && $out_of_quotes)
-        {
-            $result .= $new_line;
-
-            if ($char == '{' || $char == '[')
-                $pos++;
-
-            for ($j=0; $j<$pos; $j++)
-                $result .= $indent_str;
-        }
-
-        $prev_char = $char;
+        // return result
+        return $result . $new_line;
     }
-
-    // return result
-    return $result . $new_line;
 }
 
 
@@ -89,55 +95,82 @@ function json_indent($array=array())
  * @param string $filename
  * @return bool
  */
-function array_to_csv($array=array(), $filename="export.csv")
+if ( ! function_exists('array_to_csv'))
 {
-    $CI = get_instance();
-
-    // disable the profiler otherwise header errors will occur
-    $CI->output->enable_profiler(FALSE);
-
-    if ( ! empty($array))
+    function array_to_csv($array=array(), $filename="export.csv")
     {
-        // ensure proper file extension is used
-        if ( ! substr(strrchr($filename, '.csv'), 1))
-            $filename .= '.csv';
+        $CI = get_instance();
 
-        try {
-            // set the headers for file download
-            header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-            header("Last-Modified: " . gmdate("D, d M Y H:i:s") . "GMT");
-            header("Cache-Control: no-cache, must-revalidate");
-            header("Pragma: no-cache");
-            header("Content-type: text/csv");
-            header("Content-Description: File Transfer");
-            header("Content-Disposition: attachment; filename={$filename}");
+        // disable the profiler otherwise header errors will occur
+        $CI->output->enable_profiler(FALSE);
 
-            $output = @fopen('php://output', 'w');
+        if ( ! empty($array))
+        {
+            // ensure proper file extension is used
+            if ( ! substr(strrchr($filename, '.csv'), 1))
+                $filename .= '.csv';
 
-            // used to determine header row
-            $header_displayed = FALSE;
+            try {
+                // set the headers for file download
+                header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+                header("Last-Modified: " . gmdate("D, d M Y H:i:s") . "GMT");
+                header("Cache-Control: no-cache, must-revalidate");
+                header("Pragma: no-cache");
+                header("Content-type: text/csv");
+                header("Content-Description: File Transfer");
+                header("Content-Disposition: attachment; filename={$filename}");
 
-            foreach ($array as $row) {
-                if ( ! $header_displayed)
-                {
-                    // use the array keys as the header row
-                    fputcsv($output, array_keys($row));
-                    $header_displayed = TRUE;
+                $output = @fopen('php://output', 'w');
+
+                // used to determine header row
+                $header_displayed = FALSE;
+
+                foreach ($array as $row) {
+                    if ( ! $header_displayed)
+                    {
+                        // use the array keys as the header row
+                        fputcsv($output, array_keys($row));
+                        $header_displayed = TRUE;
+                    }
+
+                    // clean the data
+                    $allowed = '/[^a-zA-Z0-9_ %\|\[\]\.\(\)%&-]/s';
+                    foreach ($row as $key=>$value)
+                        $row[$key] = preg_replace($allowed, '', $value);
+
+                    // insert the data
+                    fputcsv($output, $row);
                 }
 
-                // clean the data
-                $allowed = '/[^a-zA-Z0-9_ %\|\[\]\.\(\)%&-]/s';
-                foreach ($row as $key=>$value)
-                    $row[$key] = preg_replace($allowed, '', $value);
+                fclose($output);
 
-                // insert the data
-                fputcsv($output, $row);
-            }
+            } catch (Exception $e) {}
+        }
 
-            fclose($output);
-
-        } catch (Exception $e) {}
+        exit;
     }
+}
 
-    exit;
+
+/**
+ * Generates a random password
+ *
+ * @return string
+ */
+if ( ! function_exists('generate_random_password'))
+{
+    function generate_random_password()
+    {
+        $characters = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+        $pass = array();
+        $alpha_length = strlen($characters) - 1;
+
+        for ($i = 0; $i < 8; $i++)
+        {
+            $n = rand(0, $alpha_length);
+            $pass[] = $characters[$n];
+        }
+
+        return implode($pass);
+    }
 }

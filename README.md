@@ -20,7 +20,7 @@ Here is what's included:
 * Includes auto-loaded core helper file
     + Human-readable JSON string output for API functions
     + Array to CSV exporting
-* Basic admin tool with authentication, dashboard and user management
+* Basic admin tool with authentication, dashboard, user management and contact email list
 
 That should be the absolute basic things you need to get started on most projects. While there are many great CMS apps
 (see below), sometimes you don't need a full CMS, or you need something much simpler than what's available, or you need
@@ -45,13 +45,14 @@ CI Fire Starter is set up to be modular, thanks to wiredesign's Modular Extensio
 (https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc). The modules are located in
 /application/modules.
 
-CI Fire Starter comes with 5 modules:
-* admin - a simple administration tool
+CI Fire Starter comes with 4 modules:
 * api - a place to build API functions
-* auth - a basic authentication module for logging in and out
-* profile - a private page for users to view their basic information
+* contact - a simple contact page with CAPTCHA
+* users - a basic authentication module for registering and logging in and out
 * welcome - the default landing page
 
+In addition to the modules, there are some core functions:
+* admin
 
 
 ##BASE CLASSES
@@ -256,6 +257,23 @@ awesome apps:
 
 ##WHAT'S NEW
 
+####Version 2.0.0
+05/06/2014
+
+Too many to list them all, but here are some of the major changes:
+
+* Added database-driven settings administration
+* Included TinyMCE WYSIWYG editor
+* Included Bootstrap DatePicker and modified to work with Bootstrap 3.x
+* Removed separate auth module and merged into user module
+* Added user self-registration and forgot password functionality to the user module
+* Removed separate login template
+* Added database-driven menus with sub-menu capabilities and built-in Bootstrap formatting
+* Added a CAPTCHA-protected contact page with an admin tool to view messages
+* Enabled CSRF protection on all forms
+* Enabled database session handling
+* Tons of code cleanup and miscellaneous improvements
+
 ####Version 1.0.1
 10/10/2013
 
@@ -276,6 +294,4 @@ awesome apps:
 
 ##ROADMAP
 
-* Add registration form and forgot password capabilities
-* Add a media manager module for uploading and managing files
-* Add settings database table and admin interface for managing settings
+* Build a media manager module

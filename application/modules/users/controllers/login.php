@@ -10,11 +10,16 @@ class Login extends Public_Controller {
         parent::__construct();
 
         // load the users model
-        $this->load->model('auth_model', 'users', TRUE);
+        $this->load->model('users_model');
 
-        // load the auth language file
-        $this->lang->load('auth');
+        // load the users language file
+        $this->lang->load('users');
     }
+
+
+    /**************************************************************************************
+     * PUBLIC FUNCTIONS
+     **************************************************************************************/
 
 
     /**
@@ -33,8 +38,8 @@ class Login extends Public_Controller {
 
         // set form validation rules
         $this->form_validation->set_error_delimiters($this->config->item('error_delimeter_left'), $this->config->item('error_delimeter_right'));
-        $this->form_validation->set_rules('username', lang('auth input username_email'), 'required|trim|xss_clean');
-        $this->form_validation->set_rules('password', lang('auth input password'), 'required|trim|xss_clean|callback_check_login');
+        $this->form_validation->set_rules('username', lang('users input username_email'), 'required|trim|xss_clean');
+        $this->form_validation->set_rules('password', lang('users input password'), 'required|trim|xss_clean|callback__check_login');
 
         if ($this->form_validation->run($this) == TRUE)
         {
@@ -56,17 +61,22 @@ class Login extends Public_Controller {
 
         // setup page header data
         $this->header_data = array_merge_recursive($this->header_data, array(
-                'page_title' => lang('auth title login'),
-                'css_files'  => array(
-                        '/themes/default/css/login.css'
-                    )
-            ));
+            'page_title' => lang('users title login'),
+            'css_files'  => array(
+                '/themes/default/css/login.css'
+            )
+        ));
         $data = $this->header_data;
 
         // load views
-        $data['content'] = $this->load->view('auth/login', NULL, TRUE);
-        $this->load->view('login_template', $data);
+        $data['content'] = $this->load->view('login', NULL, TRUE);
+        $this->load->view('template', $data);
     }
+
+
+    /**************************************************************************************
+     * PRIVATE VALIDATION CALLBACK FUNCTIONS
+     **************************************************************************************/
 
 
     /**
@@ -75,9 +85,9 @@ class Login extends Public_Controller {
      * @param $password
      * @return bool
      */
-    function check_login($password)
+    function _check_login($password)
     {
-        $login = $this->users->login($this->input->post('username', TRUE), $password);
+        $login = $this->users_model->login($this->input->post('username', TRUE), $password);
 
         if ($login)
         {
@@ -85,7 +95,7 @@ class Login extends Public_Controller {
             return TRUE;
         }
 
-        $this->form_validation->set_message('check_login', lang('auth error invalid_login'));
+        $this->form_validation->set_message('_check_login', lang('users error invalid_login'));
         return FALSE;
     }
 

@@ -43,22 +43,26 @@ class Jsi18n {
     /**
      * Parse through a JS file and replace language keys with language text values
      *
-     * @param null $file
+     * @param string $file
+     * @param bool $local
      * @return bool|mixed|null|string
      */
-    function translate($file=NULL)
+    function translate($file=NULL, $local=TRUE)
     {
         if ( ! $file)
             return NULL;
 
         // get the file contents
-        $contents = read_file('.' . $file);
+        if ($local)
+            $contents = read_file('.' . $file);
+        else
+            $contents = @file_get_contents($file);
 
         if ( ! $contents)
             return NULL;
 
         // find all double braces {{...}}
-        preg_match_all("/\{\{(.*)\}\}/", $contents, $matches, PREG_PATTERN_ORDER);
+        preg_match_all("/\{\{(.*?)\}\}/", $contents, $matches, PREG_PATTERN_ORDER);
 
         // are there any matches?
         if ($matches)
