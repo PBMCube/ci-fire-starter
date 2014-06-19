@@ -27,6 +27,7 @@ class MY_Controller extends MX_Controller {
 
         // get settings
         $settings = $this->core_model->get_settings();
+        $this->settings = new stdClass();
         foreach ($settings as $setting)
             $this->settings->{$setting['name']} = $setting['value'];
 
