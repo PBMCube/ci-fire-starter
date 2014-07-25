@@ -1,5 +1,10 @@
 WHAT'S NEW IN CI FIRE STARTER
 
+Version 2.1.0
+07/25/2014
+
+* Upgraded from CI 2.1.4 to CI 2.2.0
+
 ===================================
 
 Version 2.0.0

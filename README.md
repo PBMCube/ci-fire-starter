@@ -8,7 +8,7 @@ functionality you probably don't need. It is not a CMS nor is it an application 
 that has the basics already included and is ready for you, as a developer, to actually do what you do best... develop.
 Here is what's included:
 
-* CodeIgniter 2.1.4
+* CodeIgniter 2.2.0
 * Modular Extensions by wiredesignz (includes form validation callback fix)
 * Single base controller with Public, Private, Admin and API classes
 * JSi18n Library to support internationalization in your JS files
@@ -218,9 +218,20 @@ so if you need a more robust solution, such as authentication and API keys, chec
 
 ![Sample JSON String](http://s18.postimg.org/w8wflbka1/Screen_Shot_2013_10_08_at_2_38_35_PM.png?raw=true)
 
+
+
+##SYSTEM REQUIREMENTS
+
+* PHP version 5.1.6 or newer
+* A database: MySQL (4.1+), MySQLi, MS SQL, Postgres, Oracle, SQLite, and ODBC
+* PHP GD extension for CAPTCHA to work
+* PHP Mcrypt extension if you want to use the Encryption class
+
+
+
 ##INSTALLATION
 
-This is super simple:
+This is really simple:
 
 * Create a new database and import the included sql file
     + default administrator username/password is admin/admin
@@ -231,6 +242,7 @@ This is super simple:
     + set your site name
 * Modify application/config/database.php and connect to your database
 * Upload all files to your server
+* Make sure the /captcha/ folder has write permission
 * Visit your new URL
     + The default welcome page includes links to the admin tool and the private user profile page
 * Make sure you log in to admin and change the administrator password!
@@ -248,14 +260,20 @@ awesome apps:
 * PyroCMS: https://www.pyrocms.com/ (though last I heard, Phil Sturgeon was converting it from CodeIgniter to Laravel)
 * Expression Engine: http://ellislab.com/expressionengine (from the creators of CodeIgniter)
 * GoCart: http://gocartdv.com/ (shopping cart)
-* Open-Blog: http://www.open-blog.org/ (this is my other project - currently working on a complete rewrite, but it's
+* Open-Blog: http://www.open-blog.org/ (this is my other project - currently working on a complete rewrite, and it's
   been slow going)
 * Bonfire: http://cibonfire.com/ (this is more of an application builder than a full CMS)
 * FuelCMS: http://getfuelcms.com/
+* CMS Canvas: http://www.cmscanvas.com/
 
 
 
 ##WHAT'S NEW
+
+####Version 2.1.0
+07/25/2014
+
+* Upgraded from CI 2.1.4 to CI 2.2.0
 
 ####Version 2.0.0
 05/06/2014

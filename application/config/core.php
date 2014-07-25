@@ -4,7 +4,7 @@
  */
 
 // Site Details
-$config['site_version']          = "2.0.0";
+$config['site_version']          = "2.1.0";
 $config['default_theme']         = "default";
 $config['default_admin_theme']   = "admin";
 
