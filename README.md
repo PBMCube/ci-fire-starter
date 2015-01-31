@@ -1,6 +1,12 @@
 ci-fire-starter
 ===============
 
+#IMPORTANT ANNOUNCEMENT
+##With the announcement that CodeIgniter development is moving forward, I am retiring this version of CI Fire Starter
+for a new and improved version: https://github.com/JasonBaier/ci3-fire-starter
+
+
+
 ##INTRODUCTION
 
 CI Fire Starter is simply a basic framework for starting a new project that doesn't have a complex API to learn or extra
